@@ -443,20 +443,21 @@ function useMessages(conversationId: string) {
 zap-server/
 ├── supabase/
 │   ├── migrations/
-│   │   ├── 20240101000000_init.sql
-│   │   └── 20240102000000_add_indexes.sql
-│   ├── functions/
+│   │   ├── 20251207000000_init.sql      # ✅ 表结构 + RLS + Storage + 触发器
+│   │   └── 20251207000001_add_indexes.sql # ✅ 性能索引
+│   ├── functions/                        # 🚧 待开发
 │   │   ├── moderate-content/
 │   │   │   └── index.ts
 │   │   ├── send-email/
 │   │   │   └── index.ts
 │   │   └── sync-chain-events/
 │   │       └── index.ts
-│   ├── seed.sql
-│   └── config.toml
+│   ├── seed.sql                          # ✅ 测试数据
+│   └── config.toml                       # ✅ 本地配置
 ├── docs/
 │   ├── architecture.md  (本文件)
 │   └── api.md
+├── .gitignore
 └── README.md
 ```
 

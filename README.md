@@ -31,19 +31,18 @@ ZAP Server 采用 **Supabase** 构建，包含：
 zap-server/
 ├── supabase/
 │   ├── migrations/
-│   │   └── 20240101000000_init.sql
-│   ├── functions/
+│   │   ├── 20251207000000_init.sql      # 表结构 + RLS + Storage
+│   │   └── 20251207000001_add_indexes.sql # 性能索引
+│   ├── functions/                        # Edge Functions (待开发)
 │   │   ├── moderate-content/
-│   │   │   └── index.ts
 │   │   ├── send-email/
-│   │   │   └── index.ts
 │   │   └── sync-chain-events/
-│   │       └── index.ts
-│   ├── seed.sql
+│   ├── seed.sql                          # 测试数据
 │   └── config.toml
 ├── docs/
 │   ├── architecture.md
 │   └── api.md
+├── .gitignore
 └── README.md
 ```
 
@@ -51,25 +50,33 @@ zap-server/
 
 ## 🚀 快速开始
 
-### 1. 安装 Supabase CLI
+### 1. 前置要求
 
-```bash
-# macOS
-brew install supabase/tap/supabase
-
-# npm
-npm install -g supabase
-```
+- **Docker Desktop** - 需要运行中
+- **Node.js 18+**
 
 ### 2. 本地开发
 
 ```bash
-# 启动本地 Supabase
-supabase start
+cd zap-server
 
-# 查看状态
-supabase status
+# 启动本地 Supabase（自动执行迁移 + 加载测试数据）
+npx supabase start
+
+# 查看状态和 API Keys
+npx supabase status
+
+# 停止服务
+npx supabase stop
 ```
+
+### 启动后可访问
+
+| 服务 | URL |
+|------|-----|
+| Studio (可视化管理) | http://127.0.0.1:54323 |
+| API | http://127.0.0.1:54321 |
+| 数据库 | postgresql://postgres:postgres@127.0.0.1:54322/postgres |
 
 ### 3. 链接远程项目
 

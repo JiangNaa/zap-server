@@ -46,8 +46,9 @@ enabled = false
 # client_id = ""
 # secret = ""
 
-[functions]
-verify_jwt = true
+# [functions.function-name]
+# verify_jwt = true
+# 函数配置在部署时按需设置
 
 [analytics]
 enabled = false

@@ -1,0 +1,19 @@
+# Supabase local development
+supabase/.branches/
+supabase/.temp/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+
